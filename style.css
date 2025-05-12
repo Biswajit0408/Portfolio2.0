@@ -1,0 +1,1984 @@
+/* General body styling */
+body {
+    background: black;
+    color: white;
+    padding: 3rem;
+    scroll-behavior: smooth;
+    margin: 0;
+    position: relative;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    font-size: clamp(1rem, 1.2vw, 1.2rem);
+}
+
+/* Responsive font sizes for headings */
+h1 {
+    font-size: clamp(2rem, 4vw, 4rem);
+}
+
+h2 {
+    font-size: clamp(1.5rem, 3vw, 3rem);
+}
+
+h3 {
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+}
+
+h4, h5, h6 {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* Paragraph and text scaling */
+p, .para {
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    line-height: 1.5;
+}
+
+/* Ensure images and videos scale properly */
+img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+}
+
+/* Adjust large images in about section */
+
+@media (max-width: 480px) {
+    .bio-section .img_me {
+        width: 100% !important;
+        max-width: 50px !important;
+        height: auto !important;
+    }
+}
+
+/* Adjust video container */
+#tshirt-video-container {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+}
+
+/* Media queries for font size adjustments */
+@media (max-width: 1024px) {
+    body {
+        font-size: clamp(0.9rem, 1.1vw, 1rem);
+    }
+    h1 {
+        font-size: clamp(1.8rem, 3.5vw, 3rem);
+    }
+    h2 {
+        font-size: clamp(1.3rem, 2.5vw, 2.5rem);
+    }
+    h3 {
+        font-size: clamp(1.1rem, 2vw, 1.8rem);
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: clamp(0.8rem, 1vw, 0.9rem);
+    }
+    h1 {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+    }
+    h2 {
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+    }
+    h3 {
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
+    }
+}
+
+/* Smooth scroll for anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
+#home {
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-experiment {
+    /* background: #00ffa5; */
+    color: #203e86;
+}
+
+.portfolio-experiment .experiment-title {
+    outline: none;
+    font-size: clamp(1.5rem, 5vw, 4rem);
+    text-align: center;
+    font-family: "Roboto", monospace;
+    min-height: 5vw;
+    max-width: 80vw;
+    min-width: 10vw;
+}
+
+.portfolio-experiment .experiment-title,
+.portfolio-experiment .experiment-title * {
+    animation: cray 6s infinite steps(50);
+    display: inline-block;
+}
+
+@keyframes cray {
+    0% {
+        font-weight: 100;
+        font-style: normal;
+        text-decoration: none;
+        text-transform: none;
+    }
+    14% {
+        font-weight: 200;
+        font-style: italic;
+        text-decoration: none;
+        text-transform: none;
+    }
+    28% {
+        font-weight: 300;
+        font-style: normal;
+        text-decoration: line-through;
+        text-transform: uppercase;
+    }
+    42% {
+        font-weight: 400;
+        font-style: normal;
+        text-decoration: underline;
+        text-transform: lowercase;
+    }
+    56% {
+        font-weight: 500;
+        font-style: normal;
+        text-decoration: none;
+        text-transform: capitalize;
+    }
+    70% {
+        font-weight: 600;
+        font-style: normal;
+        text-decoration: none;
+        text-transform: none;
+    }
+    84% {
+        font-weight: 700;
+        font-style: normal;
+        text-decoration: none;
+        text-transform: none;
+    }
+    100% {
+        font-weight: 100;
+        font-style: normal;
+        text-decoration: none;
+        text-transform: none;
+    }
+}
+
+.container {
+    max-width: 100%;
+    height: auto;
+    color: var(--color, white);
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.stack {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.stack span {
+    font-weight: bold;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    font-size: 4rem;
+    --stack-height: calc(100% / var(--stacks) - 1px);
+    --inverse-index: calc(calc(var(--stacks) - 1) - var(--index));
+    --clip-top: calc(var(--stack-height) * var(--index));
+    --clip-bottom: calc(var(--stack-height) * var(--inverse-index));
+    clip-path: inset(var(--clip-top) 0 var(--clip-bottom) 0);
+    animation: stack 340ms cubic-bezier(.46,.29,0,1.24) 1 backwards calc(var(--index) * 120ms), glitch 2s ease infinite 2s alternate-reverse;
+}
+
+.stack span:nth-child(odd) { --glitch-translate: 8px; }
+.stack span:nth-child(even) { --glitch-translate: -8px; }
+
+@keyframes stack {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%);
+        text-shadow: -2px 3px 0 red, 2px -3px 0 blue;
+    };
+    60% {
+        opacity: 0.5;
+        transform: translateX(50%);
+    }
+    80% {
+        transform: none;
+        opacity: 1;
+        text-shadow: 2px -3px 0 red, -2px 3px 0 blue;
+    }
+    100% {
+        text-shadow: none;
+    }
+}
+
+@keyframes glitch {
+    0% {
+        text-shadow: -2px 3px 0 red, 2px -3px 0 blue;
+        transform: translate(var(--glitch-translate));
+    }
+    2% {
+        text-shadow: 2px -3px 0 red, -2px 3px 0 blue;
+    }
+    4%, 100% {  text-shadow: none; transform: none; }
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.1) 0,
+        rgba(255, 255, 255, 0.1) 2px,
+        transparent 2px,
+        transparent 10px
+    );
+    animation: bubbleStrips 10s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes bubbleStrips {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+
+/* Global styling for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'IBM Plex Mono, monospace;
+    
+}
+
+/* Apply IBM Plex Mono font to all paragraphs */
+p {
+    font-family: 'IBM Plex Mono', monospace !important;
+}
+
+/* Override specific font-family declarations */
+.bio, #services h1, #contact h1 {
+    font-family: 'Montserrat', sans-serif !important;
+    color: white !important;
+}
+
+#about .bio-text, #services {
+    color: white;
+    padding-right: 2rem;
+    margin-bottom: 4rem;
+}
+
+#about .bio-text p.para {
+    text-align: left;
+    color: #f0f0f0;
+}
+
+#about .bio-text p.para {
+    padding-right: 2rem;
+}
+
+/* Header styling */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2rem;
+    background-color: transparent;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+    box-shadow: none;
+}
+
+.logo {
+    position: static;
+    transform: none;
+    margin-bottom: 1rem;
+}
+
+.header-nav {
+    margin-left: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* Desktop viewport nav buttons aligned right */
+@media (min-width: 769px) {
+    .header-nav {
+        margin-left: auto;
+        justify-content: flex-end;
+        gap: 1rem;
+    }
+}
+
+/* Keep previous background and shadow for smaller screens */
+@media (max-width: 768px) {
+    header {
+        background-color: rgba(0, 0, 0, 0.85);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.7);
+    }
+    .header-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+}
+
+/* Add a container for nav buttons for better flex control */
+.header-nav {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+/* Responsive adjustments for nav buttons container */
+@media (max-width: 768px) {
+    .header-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+}
+
+/* Adjust nav buttons for better spacing and usability */
+.contact-btn, .nav-btn {
+    padding: 0.5em 1.5rem;
+    font-size: 1rem;
+    margin: 0 0.3rem;
+    min-width: 100px;
+    text-align: center;
+}
+
+/* Phone viewport specific button adjustments */
+@media (max-width: 480px) {
+    .contact-btn, .nav-btn {
+        width: 100%;
+        margin: 0.4rem 0;
+        padding: 0.7em 1rem;
+        font-size: 1.1rem;
+        border-radius: 30px;
+    }
+
+    /* Center header nav buttons */
+    header .header-nav {
+        justify-content: center !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    /* Adjust logo padding and margin */
+    .logo {
+        padding-left: 1rem !important;
+        margin-bottom: 1rem !important;
+        font-size: 1.8rem !important;
+    }
+}
+
+.logo {
+    font-weight: 300;
+    letter-spacing: 2px;
+    padding-left: 2rem;
+    line-height: normal;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif !important;
+    cursor: pointer;
+}
+
+.contact-btn, .nav-btn {
+    padding: 0.3em 1.2rem;
+    font-size: 0.85rem;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 50px;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    z-index: 1000;
+    line-height: normal;
+    margin: 0 0.5rem;
+    width: auto;
+    height: auto;
+}
+
+.github-btn {
+    border-radius: 20px !important;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    padding: 6px 14px !important;
+}
+
+.contact-btn {
+    padding: 0.3em 1.2rem;
+    font-size: 0.85rem;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 50px;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    z-index: 1000;
+}
+
+.contact-btn:hover, .nav-btn:hover {
+    background-color: white;
+    color: black;
+    transform: scale(1.05);
+}
+
+.resume-btn {
+    padding: 0.5em 2rem;
+    font-size: 1rem;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 50px;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 2rem;
+}
+
+.resume-btn:hover {
+    background-color: white;
+    color: black;
+    transform: scale(1.05);
+}
+
+/* NAVIGATION INDICATOR STYLING */
+section {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 100%;
+    height: auto;
+}
+
+.scroll-indicator {
+    display: none !important;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ccc;
+    display: block;
+    transition: background 0.3s ease;
+}
+
+.dot.active {
+    background: black;
+    transform: scale(1.2);
+}
+
+/* MAIN SECTION STYLING */
+
+
+.title-sec h1 {
+    font-size: 6rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    line-height: 1.2;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(45deg, #1a1a1a, #333333, #4a4a4a, #666666, #1a1a1a);
+    background-size: 400% 400%;
+    animation: gradientText 10s ease infinite;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    position: relative;
+    transform: translateY(-20px);
+    animation: floatText 6s ease-in-out infinite;
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+}
+
+.title-sec h1::before,
+.title-sec h1::after {
+    display: none;
+}
+
+
+.title-sec::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+    animation: pulseGlow 4s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.3; }
+    50% { transform: translateX(-50%) scale(1.2); opacity: 0.5; }
+}
+
+main {
+    overflow: hidden;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Bio section styling */
+.bio-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding: 60px 20px;
+    margin-top: 0;
+    gap: 40px;
+    flex-wrap: wrap;
+    border: 2px solid white;
+    border-radius: 50px;
+    box-sizing: border-box;
+}
+
+.bio-content {
+    flex: 1;
+}
+
+.bio {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #222;
+    text-align: left;
+}
+
+.bio::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #333;
+    margin-top: 10px;
+    border-radius: 2px;
+}
+
+
+
+.img_me:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+.bio-video {
+    flex: 1;
+    border-radius: 67px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    animation: fadeInUp 1s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    0% {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.para {
+    max-width: 700px;
+    font-size: 1.1rem;
+    line-height: 2.0;
+    color: #555;
+}
+
+/* Scroll Down Indicator Styling */
+.scrolldown {
+    height: 5rem;
+    width: 2rem;
+    position: absolute;
+    left: 95%;
+    bottom: 40px;
+    transform: translateX(-50%);
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 4px black;
+}
+
+.scrolldown::before,
+.scrolldown::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    max-width: 100%;
+    height: auto;
+    transform: translate(-50%, -100%) rotate(45deg);
+    border: 1.5px solid black;
+    border-top: black;
+    border-left: white;
+    animation: scrolldown 3s ease-in-out infinite;
+}
+
+.scrolldown::before {
+    top: 30%;
+    animation-delay: 1s;
+}
+
+@keyframes scrolldown {
+    0% { opacity: 0; }
+    30%, 60% { opacity: 1; }
+    100% { opacity: 0; top: 90%; }
+}
+
+/* ===== SERVICES SECTION STYLING ===== */
+#services {
+    max-width: 100%;
+    height: auto;
+    padding-top: 4rem;
+    margin-top: 4rem;
+    margin-bottom: 6rem; /* increased bottom margin to add space below services */
+    text-align: center;
+}
+
+#services h1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #222;
+    text-align: center;
+}
+
+/* Apply JetBrains Mono font to all headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'JetBrains Mono', monospace !important;
+}
+
+/* Apply JetBrains Mono font to buttons and specific headings */
+button, .contact-btn, .nav-btn, .resume-btn, #about .bio, #services h1 {
+    font-family: 'JetBrains Mono', monospace !important;
+}
+
+#services h1::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #333;
+    margin: 1rem 0 1rem auto;
+    border-radius: 2px;
+}
+
+/* Services Grid Styling */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 0 0 auto;
+    padding: 0 1rem;
+}
+
+@media (max-width: 480px) {
+    .services-grid {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        overflow-x: visible;
+        gap: 1rem;
+        padding: 0 0.5rem;
+    }
+    .service-card {
+        min-width: auto;
+        width: 100%;
+        flex: none;
+    }
+}
+
+.service-card {
+    position: relative;
+    background-color: #fdfcf7;
+    border-radius: 20px;
+    padding: 2rem 1rem;
+    text-align: left;
+    color: #000000;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.15);
+    background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
+    background-size: 25px 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.service-card h3 {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.service-card p {
+    margin-top: 0.8rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333333;
+}
+
+/* Improve paragraph visibility in service cards for dark backgrounds */
+@media (prefers-color-scheme: dark), (max-width: 768px) {
+    .service-card p {
+        color: black !important;
+        text-shadow: none !important;
+    }
+}
+
+.service-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 2rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+/* ==== Carousel Styling ==== */
+.carousel-text-container {
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+    margin: 12rem auto 0; /* increased top margin to move text down */
+    max-width: 1400px;
+    padding: 0 1rem;
+}
+
+.carousel-container {
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.carousel {
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    transition: transform 1.5s ease-in-out;
+    width: 100%;
+}
+
+.carousel-item {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+    left: 20px;
+}
+
+.next-btn {
+    right: 20px;
+}
+
+/* Carousel Section Styling */
+.carousel-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    margin-bottom: 6rem;
+}
+
+/* Contact Section Styling */
+#contact {
+    scroll-margin-top: 100px;
+    padding-top: 12rem;
+    padding-bottom: 8rem;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    overflow: hidden;
+    margin-top: 6rem; /* increased top margin to add space above contact */
+}
+
+#contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+}
+
+#contact h1 {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 6rem;
+    color: #222;
+    text-shadow: none;
+    text-align: center;
+    position: relative;
+}
+
+#contact h1::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #333;
+    margin: 1rem auto;
+    border-radius: 2px;
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 4rem;
+    margin-bottom: 2rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.contact-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.contact-icon {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.contact-details h3 {
+    color: #333;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.contact-details p {
+    color: #666;
+    font-size: 1.1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+.social-links {
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes cray {
+    0% {
+        font-weight: 100;
+        font-style: normal;
+        text-decoration: none;
+        text-transform: none;
+    }
+    14% {
+        font-weight: 200;
+        font-style: italic;
+        text-decoration: none;
+        text-transform: none;
+    }
+    28% {
+        font-weight: 300;
+        font-style: normal;
+        text-decoration: line-through;
+        text-transform: uppercase;
+    }
+    42% {
+        font-weight: 400;
+        font-style: normal;
+        text-decoration: underline;
+        text-transform: lowercase;
+    }
+    56% {
+        font-weight: 500;
+        font-style: normal;
+        text-decoration: none;
+        text-transform: capitalize;
+    }
+    70% {
+        font-weight: 600;
+        font-style: normal;
+        text-decoration: none;
+        text-transform: none;
+    }
+    84% {
+        font-weight: 700;
+        font-style: normal;
+        text-decoration: none;
+        text-transform: none;
+    }
+    100% {
+        font-weight: 100;
+        font-style: normal;
+        text-decoration: none;
+        text-transform: none;
+    }
+}
+
+.social-links h3 {
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.social-label {
+    color: white;
+    font-size: 0.75rem;
+    text-align: center;
+    margin-top: 0.25rem;
+}
+
+.social-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 15%;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.social-icon:hover {
+    transform: translateY(-5px) scale(1.1);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.social-icon img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+/* Make images and videos responsive */
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: contain;
+}
+
+/* Media queries for images and videos responsiveness */
+@media (max-width: 1200px) {
+  img, video {
+    max-width: 90%;
+  }
+}
+
+/* Responsive button styles */
+@media (max-width: 768px) {
+  button, .contact-btn, .nav-btn, .resume-btn {
+    font-size: 1rem;
+    padding: 0.75em 1.5rem;
+    width: 100%;
+    display: block;
+    margin: 0.5rem 0;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 480px) {
+  button, .contact-btn, .nav-btn, .resume-btn {
+    font-size: 0.9rem;
+    padding: 0.6em 1rem;
+    width: auto;
+    display: inline-block;
+    margin: 0.4rem 0.5rem 0.4rem 0;
+  }
+
+  /* Container for buttons to allow wrapping and spacing */
+  .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+
+  /* Text responsiveness improvements */
+  h1, h2, h3, h4, h5, h6, p, .para {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+
+  p, .para {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  /* Adjust text container padding */
+  .bio-content, .contact-item, .service-card {
+    padding: 0 1rem;
+  }
+
+  /* Alignment improvements for home section and text */
+  #home, .title-sec, .bio-section, .bio-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  #home .profile-image {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Center video container and starry sky background */
+  #home .video-box, .starry-sky {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  /* Center text under the video */
+  #home .video-text {
+    text-align: center;
+    margin-top: 1rem;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  img, video {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Containers for images and videos */
+.img-container, .video-container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+/* Responsive text under the video in #home section */
+#home .video-text {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  text-align: center;
+  margin-top: 1rem;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive adjustments for image and video containers */
+@media (max-width: 768px) {
+  .img-container, .video-container {
+    padding: 0 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .img-container, .video-container {
+    padding: 0 0.25rem;
+  }
+}
+
+/* Specific adjustments for videos if needed */
+video {
+  max-height: 60vh;
+}
+
+/* Ensure carousel images and videos scale properly */
+.carousel-container img,
+.carousel-container video {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+}
+
+/* Adjust carousel item height on smaller screens */
+@media (max-width: 768px) {
+  .carousel-item {
+    height: 40vh;
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
+  .carousel-item {
+    height: 45vh;
+    min-height: 200px;
+  }
+  .carousel-container img,
+  .carousel-container video {
+    max-height: 45vh;
+  }
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
+
+/* Footer Styling */
+footer {
+    padding: 2rem;
+    text-align: center;
+    color: white;
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    margin-top: 4rem;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+}
+
+footer p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Scroll to Top Button */
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-to-top:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+    transform: translateY(-5px);
+}
+
+/* Motion*/
+#gallery {
+    width: 100%;
+    height: auto;
+}
+
+#gallery h3 {
+    font-family: "" Azeret Mono "", monospace;
+}
+
+#gallery header,
+#gallery footer {
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-group-container {
+    height: 150vh;
+    position: relative;
+}
+
+.img-group-container > div {
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.img-group {
+    display: flex;
+}
+
+.img-container {
+    display: flex;
+    max-width: 100%;
+    height: auto;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#gallery header h2 {
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: -3px;
+    line-height: 0.5;
+    text-align: center;
+    margin: 0;
+}
+
+.img-container h3 {
+    margin: 0;
+    font-size: 50px;
+    font-weight: 700;
+    letter-spacing: -3px;
+    line-height: 1.2;
+    position: relative;
+    bottom: 30px;
+    display: inline-block;
+}
+
+.img-container img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+}
+
+/* Increase gallery image size on mobile */
+@media (max-width: 480px) {
+    .img-container img {
+        max-width: 600px !important;
+        height: auto !important;
+    }
+}
+
+.progress {
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: transparent;
+    bottom: 50px;
+    transform: scaleX(0);
+}
+
+#home .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.video-box {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Starry sky background */
+.starry-sky {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(rgba(255, 255, 255, 0.3) 2px, transparent 2px),
+                radial-gradient(rgba(255, 255, 255, 0.3) 2px, transparent 2px);
+    background-position: 0 0, 50px 50px;
+    background-size: 100px 100px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 1;
+}
+
+#tshirt-video-container {
+    position: relative;
+}
+
+#tshirt-video-container {
+    position: relative;
+}
+
+/* Remove fading effect from container */
+#tshirt-video-container::after {
+    content: none;
+}
+
+/* Remove fading effect from video element */
+#tshirt-video::after {
+    content: none;
+}
+
+#tshirt-video {
+    border-radius: 60px;
+}
+
+/* New wrapper for video and fade overlay */
+#tshirt-video-wrapper {
+    flex: 1;
+    max-width: 600px;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#video-fade-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent 60%, black 100%);
+    border-radius: 60px;
+    z-index: 15;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#video-fade-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent 60%, black 100%);
+    border-radius: 60px;
+    z-index: 15;
+    box-sizing: border-box;
+    transform: none;
+}
+
+/* New fading overlay div */
+#video-fade-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent 60%, black 100%);
+    border-radius: 60px;
+    z-index: 15;
+}
+
+/* Cloud styling */
+.cloud {
+    position: absolute;
+    top: 20%;
+    width: 150px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+    filter: blur(8px);
+    opacity: 0.7;
+    pointer-events: none;
+    transition: transform 0.3s ease;
+    box-shadow:
+        30px 10px 20px rgba(255, 255, 255, 0.6),
+        60px 20px 30px rgba(255, 255, 255, 0.5),
+        90px 10px 20px rgba(255, 255, 255, 0.4);
+    z-index: 0;
+}
+
+#cloud1 {
+    left: 10%;
+    top: 25%;
+}
+
+#cloud2 {
+    left: 60%;
+    top: 15%;
+}
+
+.video-box video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#home h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: white;
+}
+
+#flashlight {
+    position: fixed;
+    pointer-events: none;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 80%);
+    mix-blend-mode: screen;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+}
+
+#home .profile-image {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease;
+}
+
+#home .profile-image:hover {
+    transform: scale(1.05);
+}
+
+.carousel-text .contact-btn {
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+.carousel-text {
+    position: relative;
+}
+
+.carousel-text img.viper-background {
+    position: absolute;
+    left: -80px;
+    top: 120px;
+    width: 280px; /* increased size */
+    height: auto;
+    transform: rotate(-30deg);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.carousel-text img.viper-background:hover {
+    cursor: pointer;
+}
+
+.carousel-text img.viper222-background {
+    position: absolute;
+    right: -240px;
+    top: 120px;
+    width: 240px;
+    height: auto;
+    transform: rotate(30deg);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.carousel-text img.viper222-background:hover {
+    cursor: pointer;
+}
+
+.carousel-text img.viper-background:hover {
+    cursor: pointer;
+}
+
+.carousel-text img.viper222-background:hover {
+    cursor: pointer;
+}
+@media (max-width: 1024px) {
+#home, .bio-section, #contact, .carousel-container {
+min-height: 80vh;
+padding-top: 2rem;
+padding-bottom: 2rem;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+}
+
+.bio {
+font-size: 1.8rem;
+}
+
+.para {
+font-size: 1rem;
+}
+
+.service-card {
+padding: 1.5rem 1rem;
+}
+
+.service-card h3 {
+font-size: 1.3rem;
+}
+
+.carousel-item {
+height: 40vh;
+min-height: 200px;
+}
+}
+
+/* Phone layout adjustments */
+@media (max-width: 480px) {
+  /* Reset and override previous conflicting styles */
+  body, html {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  #home, .bio-section, #contact, .carousel-container, .container, .carousel-text-container, .contact-container {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Center images and keep size intact */
+  .bio-section .img_me {
+    width: 100% !important;
+    max-width: 400px !important;
+    height: auto !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+  }
+
+  /* Center header nav buttons */
+  header .header-nav {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Center gallery images */
+  .img-container img {
+    width: 100% !important;
+    max-width: 300px !important;
+    height: auto !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+  }
+
+  /* Center contact items */
+  .contact-item {
+    max-width: 90% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Adjust video container */
+  #tshirt-video-container {
+    width: 100% !important;
+    max-width: 600px !important;
+    height: auto !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* Center content horizontally for main containers */
+.container, .bio-section, #contact, .carousel-text-container, .contact-container {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+}
+
+/* Keep image size intact but center it */
+.bio-section .img_me {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+}
+
+/* Center header nav buttons */
+header .header-nav {
+    justify-content: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+}
+
+/* Center gallery images */
+.img-container img {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Center contact items */
+.contact-item {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.bio {
+font-size: 1.5rem;
+}
+
+.para {
+font-size: 0.9rem;
+}
+
+.service-card {
+padding: 1.2rem 0.8rem;
+}
+
+.service-card h3 {
+font-size: 1.2rem;
+}
+
+.carousel-item {
+height: 30vh;
+min-height: 150px;
+}
+
+button, .contact-btn, .nav-btn, .resume-btn {
+font-size: 0.9rem;
+padding: 0.6em 1rem;
+width: auto;
+display: inline-block;
+margin: 0.4rem 0.5rem 0.4rem 0;
+}
+
+.button-container {
+display: flex;
+flex-wrap: wrap;
+gap: 0.5rem;
+justify-content: center;
+}
+
+/* Responsive adjustments for about section image */
+.bio-section .img_me {
+    width: 400px !important;
+    height: 400px !important;
+    object-fit: cover !important;
+    border-radius: 40% !important;
+    margin: 0 auto !important;
+    order: 0 !important;
+    overflow: hidden !important;
+    display: block !important;
+}
+
+/* Responsive adjustments for video container in home section */
+#tshirt-video-container {
+    width: 100% !important;
+    max-width: 600px !important;
+    height: auto !important;
+    margin: 0 auto !important;
+}
+
+/* Adjust flex direction and wrapping for bio-section */
+.bio-section {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 20px !important;
+}
+
+/* Adjust home section flex direction for smaller screens */
+#home {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 20px !important;
+}
+
+/* Adjust container max-width for home section */
+#home .container {
+    max-width: 90% !important;
+}
+
+/* Adjust carousel text container for smaller screens */
+.carousel-text-container {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 2rem !important;
+    padding: 0 1rem !important;
+}
+
+/* Adjust carousel container width */
+.carousel-container {
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+/* Adjust carousel item height */
+.carousel-item {
+    height: 60vh !important;
+    min-height: 300px !important;
+}
+
+/* Adjust max height of images and videos inside carousel container */
+.carousel-container img,
+.carousel-container video {
+    max-height: 60vh !important;
+}
+
+/* Adjust gallery images for smaller screens */
+.img-container img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 600px !important;
+    max-height: 565px !important;
+    margin: 0 auto !important;
+}
+
+/* Move down the "Liked my Designs? Hire me here" and Upwork button container */
+h1.1234 {
+    margin-top: 150px !important;
+    font-size: 2rem !important;
+}
+
+h1.1234 + div {
+    margin-top: 100px !important;
+}
+
+/* Increase gallery container height */
+#gallery {
+    min-height: 565px;
+    height: auto;
+}
+
+/* Adjust contact container flex direction */
+.contact-container {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 2rem !important;
+}
+
+/* Adjust contact item max width */
+.contact-item {
+    max-width: 90% !important;
+    margin: 0 auto !important;
+}
+
+/* Adjust social links padding */
+.social-links {
+    padding: 1.5rem !important;
+    margin-top: 1rem !important;
+}
+
+/* Adjust header nav buttons for smaller screens */
+header .header-nav {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    padding: 0 1rem !important;
+}
+
+/* Adjust logo padding */
+.logo {
+    padding-left: 1rem !important;
+    margin-bottom: 1rem !important;
+}
+}

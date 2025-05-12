@@ -1,0 +1,74 @@
+$b: .25em;
+
+* { margin: 0; padding: 0; font: inherit }
+
+body, section, button { display: grid }
+
+body {
+	grid-gap: 3em;
+	margin: 0;
+	height: 100vh;
+	background: 
+		repeating-linear-gradient(45deg, 
+				#000 0 1em, #111 0 2em);
+	font: 900 .75em ubuntu, sans-serif
+}
+
+section {
+	grid-gap: 2em .75em;
+	grid-template-columns: repeat(auto-fit, 12em);
+	place-content: center;
+}
+
+h3 {
+	grid-column: 1/ -1;
+	color: #eee;
+	font: 2rem/ 1.25em z003, segoe scrpt, comic sans ms, cursive;
+	text-align: center;
+}
+
+button {
+	--full: linear-gradient(red 0 0);
+	--grad: linear-gradient(to right bottom, var(--slist));
+	grid-gap: .5em;
+	grid-auto-flow: column;
+	place-self: center;
+	border: solid $b transparent;
+	padding: 1em 1.5em;
+	border-radius: 9em;
+	background: var(--grad) border-box;
+	-webkit-text-fill-color: transparent;
+	font: inherit;
+	text-transform: uppercase;
+	
+	:nth-child(1) > & {
+		mask: var(--full), var(--full), var(--full);
+		-webkit-mask-clip: text, padding-box, border-box;
+		mask-composite: exclude
+	}
+	
+	:nth-child(2) > & {
+		position: relative;
+						background-clip: text;
+		
+		&::before {
+			position: absolute;
+			inset: -$b;
+			border: inherit;
+			border-radius: inherit;
+			background: inherit;
+			background-clip: border-box;
+			mask: var(--full) padding-box exclude, 
+						var(--full);
+			content: ''
+		}
+	}
+	
+	:nth-child(3) > & {
+		border-image: var(--grad) 1;
+						background-clip: text;
+		clip-path: inset(0 round $b)
+	}
+	
+	&::after { content: attr(data-ico) }
+}
