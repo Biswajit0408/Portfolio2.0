@@ -3,7 +3,8 @@ body {
     background: black;
     color: white;
     padding: 3rem;
-    scroll-behavior: smooth;
+    scroll-padding: 0.5rem;
+    scroll-snap-type: y proximity;
     margin: 0;
     position: relative;
     overflow-x: hidden;
@@ -46,12 +47,17 @@ img, video {
 
 /* Adjust large images in about section */
 
-@media (max-width: 480px) {
-    .bio-section .img_me {
-        width: 100% !important;
-        max-width: 50px !important;
-        height: auto !important;
-    }
+.bio-section .img_me {
+    object-fit: cover !important;
+    border-radius: 50% !important;
+    margin: 0 auto !important;
+    order: 0 !important;
+    overflow: hidden !important;
+    display: block !important;
+    max-width: 300px !important;
+    max-height: 300px !important;
+    width: 100% !important;
+    height: auto !important;
 }
 
 /* Adjust video container */
@@ -406,6 +412,7 @@ header {
     margin: 0;
     font-family: 'Montserrat', sans-serif !important;
     cursor: pointer;
+    font-size: 3.5rem !important;
 }
 
 .contact-btn, .nav-btn {
@@ -890,6 +897,18 @@ button, .contact-btn, .nav-btn, .resume-btn, #about .bio, #services h1 {
     margin-top: 6rem; /* increased top margin to add space above contact */
 }
 
+@media (max-width: 480px) {
+    #contact {
+        padding-top: 6rem !important;
+        padding-bottom: 4rem !important;
+        margin-top: 3rem !important;
+        min-height: auto !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+}
+
 #contact::before {
     content: '';
     position: absolute;
@@ -902,9 +921,10 @@ button, .contact-btn, .nav-btn, .resume-btn, #about .bio, #services h1 {
 
 #contact h1 {
     font-family: 'JetBrains Mono', monospace !important;
-    font-size: 2.5rem;
+    font-size: 1.8rem !important;
     font-weight: 700;
-    margin-bottom: 6rem;
+    margin-top: 1rem !important;
+    margin-bottom: 3rem !important;
     color: #222;
     text-shadow: none;
     text-align: center;
@@ -1423,12 +1443,7 @@ footer p {
     display: inline-block;
 }
 
-.img-container img {
-    width: 100% !important;
-    height: auto !important;
-    max-width: none !important;
-    max-height: none !important;
-}
+
 
 /* Increase gallery image size on mobile */
 @media (max-width: 480px) {
@@ -1736,15 +1751,6 @@ min-height: 200px;
     box-sizing: border-box !important;
   }
 
-  /* Center images and keep size intact */
-  .bio-section .img_me {
-    width: 100% !important;
-    max-width: 400px !important;
-    height: auto !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    display: block !important;
-  }
 
   /* Center header nav buttons */
   header .header-nav {
@@ -1796,11 +1802,6 @@ min-height: 200px;
 }
 
 /* Keep image size intact but center it */
-.bio-section .img_me {
-    margin-left: auto !important;
-    margin-right: auto !important;
-    display: block !important;
-}
 
 /* Center header nav buttons */
 header .header-nav {
@@ -1859,17 +1860,17 @@ gap: 0.5rem;
 justify-content: center;
 }
 
-/* Responsive adjustments for about section image */
-.bio-section .img_me {
-    width: 400px !important;
-    height: 400px !important;
-    object-fit: cover !important;
-    border-radius: 40% !important;
+/* Responsive adjustments for about section image 
+
+/* Add media query for phone dimensions to set image size to 100px */
+/* Responsive adjustments for video container in home section */
+#tshirt-video-container {
+    width: 100% !important;
+    max-width: 600px !important;
+    height: auto !important;
     margin: 0 auto !important;
-    order: 0 !important;
-    overflow: hidden !important;
-    display: block !important;
 }
+
 
 /* Responsive adjustments for video container in home section */
 #tshirt-video-container {
