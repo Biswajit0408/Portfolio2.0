@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio_Biswajit</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/examples/js/loaders/GLTFLoader.js"></script>
+</head>
+  <body>
+  <header>
+    <div class="logo" id="logo">
+      <div class="container">
+        <div class="stack" style="--stacks: 3;">
+          <span style="--index: 0;"></span>
+          <span style="--index: 1;">R</span>
+          <span style="--index: 2;">.</span>
+          <span style="--index: 2;">R</span>
+        </div>
+      </div>
+    </div>
+    <nav class="header-nav">
+      <a href="#about" class="nav-btn">About Me</a>
+      <a href="#services" class="nav-btn">Services</a>
+      <a href="#gallery" class="nav-btn">Gallery</a>
+      <a href="#contact" class="contact-btn" id="contactBtn">Contact</a>
+    </nav>
+  </header>
+    <div id="smoky-background" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;"></div>
+  <script>
+    document.getElementById('logo').addEventListener('click', () => {
+      location.reload();
+    });
+
+    // Scroll animation for header nav buttons
+    const navButtons = document.querySelectorAll('.nav-btn, .contact-btn');
+    navButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = button.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+  <script>
+    document.getElementById('contactBtn').addEventListener('click', function(event) {
+      event.preventDefault();
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    });
+  </script>
+
+  <nav class="scroll-indicator">
+    <a href="#home" class="dot active" title="Home"></a>
+    <a href="#about" class="dot" title="About"></a>
+    <a href="#services" class="dot" title="Services"></a>
+    <a href="#contact" class="dot" title="Contact"></a>
+  </nav>
+
+    <section id="home" style="position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; min-height: 800px;">
+    <div class="starry-sky" style="position: absolute; top: 0; left: 0; width: 200%; height: 150%; z-index: -1;"></div>
+    <div id="tshirt-video-container" style="width: 700px; height: 600px; background-color: transparent; z-index: 10;">
+      <div id="tshirt-video-wrapper" style="width: 100%; height: 100%; border-radius: 60px; overflow: hidden; position: relative;">
+        <video id="tshirt-video" class="bio-video" style="width: 100%; height: 100%;" autoplay loop muted>
+          <source src="ShirtVideo.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div id="video-fade-overlay"></div>
+      </div>
+    </div>
+    <div class="container portfolio-experiment" style="visibility: hidden; z-index: 1;">
+      <h1 class="experiment-title" style="text-align: center; white-space: nowrap;">
+        <span class="glitch-text">निर्माता</span>
+      </h1>
+    </div>
+    <script>
+      document.fonts.ready.then(() => {
+        const container = document.querySelector("#home .container");
+        if (!container) return;
+
+        // Show container after fonts are loaded
+        container.style.visibility = "visible";
+
+        const h1 = container.querySelector("h1");
+        if (!h1) return;
+
+        // Split text into words
+        const words = h1.textContent.trim().split(/\s+/);
+        h1.textContent = "";
+
+        words.forEach(word => {
+          const span = document.createElement("span");
+          span.textContent = word + " ";
+          span.style.opacity = "0";
+          span.style.display = "inline-block";
+          h1.appendChild(span);
+        });
+
+        const spans = h1.querySelectorAll("span");
+
+        // Animate words with stagger
+        spans.forEach((span, index) => {
+          span.animate(
+            [
+              { opacity: 0, transform: "translateY(10px)" },
+              { opacity: 1, transform: "translateY(0)" }
+            ],
+            {
+              duration: 2000,
+              easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+              fill: "forwards",
+              delay: index * 50
+            }
+          );
+        });
+      });
+    </script>
+  </section>
+
+    <section id="about">
+    <div class="bio-section" style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 40px;">
+      <div class="bio-text" style="order: 2; flex: 1; padding-left: 20px; display: flex; flex-direction: column; align-items: flex-start;">
+        <p class="bio">ABOUT ME</p>
+        <p class="about-subtitle" style="font-size: 1.2rem; font-weight: 600; margin-top: 0.25rem; margin-bottom: 1rem;">BISWAJIT ROUT</p>
+        <p class="para">
+          I'm a developer and designer who creates modern, responsive websites and compelling visual experiences.
+          With a strong eye for detail and a passion for both form and function, I bring ideas to life through thoughtful design
+          and clean, purposeful code—whether it's for the web, digital art, or 3D visuals.
+        </p>
+        <a href="RESUME_Biswa.pdf" class="resume-btn" target="_blank" style="margin-top: 1rem;">View My Resume</a>
+      </div>
+      <img src="me3.png" class="img_me" alt="Biswajit">
+    </div>
+  </section>
+
+  <section id="services">
+    <div style="display: flex; justify-content: flex-end;">
+      <h1>SERVICES</h1>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="cloud.jpg" class="service-icon" />
+        <h3>Cloud Architecture</h3>
+        <p>Designing and implementing robust, scalable, and secure cloud infrastructures tailored to your business needs. Specializing in AWS, Azure, and Google Cloud platforms.</p>
+      </div>
+      <div class="service-card">
+        <img src="64.jpg" class="service-icon" />
+        <h3>UI/UX Design</h3>
+        <p>Creating intuitive and engaging user experiences through thoughtful design. From wireframes to high-fidelity prototypes that drive user satisfaction.</p>
+      </div>
+      <div class="service-card">
+        <img src="Smart Phone Flat Style.jpg" class="service-icon" />
+        <h3>Web & Mobile Development</h3>
+        <p>Building responsive web applications and mobile interfaces with a focus on performance and accessibility.</p>
+      </div>
+      <div class="service-card">
+        <img src="paint.jpg" class="service-icon" />
+        <h3>Graphic Design</h3>
+        <p>Crafting visually compelling designs for digital and print media. From brand identities to marketing materials that capture attention.</p>
+      </div>
+    </div>
+    <!-- Gallery Carousel below the service cards -->
+    <div class="carousel-text-container" style="flex-direction: column; align-items: center;">
+      <div class="carousel-container">
+        <div class="carousel">
+          <div class="carousel-item">
+            <img src="ST.png" alt="Image 1" />
+          </div>
+          <div class="carousel-item">
+            <img src="ST2.png"Image 2" />
+          </div>
+          <div class="carousel-item">
+            <img src="ST3.png"Image 3" />
+          </div>
+        </div>
+        <button class="carousel-btn prev-btn"><</button>
+        <button class="carousel-btn next-btn">></button>
+      </div>
+<div class="carousel-text" style="text-align: center; margin-top: 1rem; position: relative;">
+  <h2>MY WORK</h2>
+  <p style="margin-top: 1rem;">Explore my latest projects and creative works. Each piece represents my passion for design and development, showcasing innovative solutions and beautiful aesthetics.</p>
+  <img src="viper.png" alt="Viper Front" class="viper-background" />
+  <img src="viper222.png" alt="Viper 222" class="viper222-background" />
+  <a href="https://github.com/Biswajit0408" target="_blank" class="contact-btn github-btn" style="margin-top: 20px; display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; position: relative; z-index: 10;">
+    <img src="ft.png" alt="GitHub" style="width: 24px; height: 24px;" />
+    GitHub
+  </a>
+</div>
+    </div>
+  </section>
+
+  <article id="gallery" style="margin-bottom: -400px;">
+    <!-- Removed Gallery heading to remove gallery text -->
+    <section class="img-group-container" style="margin-bottom: -400px;">
+      <div>
+        <ul class="img-group">
+          <li class="img-container" data-description="I created a dynamic Daredevil poster using Adobe Photoshop, blending powerful visuals with my own creative direction. Inspired by the gritty, intense tone of the character, I combined layered textures, dramatic lighting, and bold typography to capture the essence of Daredevil’s vigilante persona. The design features a dark, urban backdrop, strong red highlights, and striking contrast to emphasize mood and impact. This project showcases my ability to use Photoshop tools effectively while applying artistic vision to bring a superhero to life.">
+            <img src="Daredevil2.2.png" />
+          </li>
+          <li class="img-container" data-description="I designed a cinematic Dune poster that captures the epic scale and mystique of the universe. Drawing inspiration from the film's atmospheric tones and futuristic themes, I combined striking visuals, layered elements, and a muted color palette to evoke the harsh beauty of the desert world. The composition highlights the central character against a vast, windswept backdrop, creating a sense of isolation and destiny. This project allowed me to explore mood-driven design and storytelling through visual art.">
+            <img src="Dune22.png" />
+          </li>
+          <li class="img-container" data-description="For the GTA 6 poster, I took a minimalist approach by enhancing the original visual through subtle color adjustments and the addition of the iconic logo. The goal was to maintain the vibrant, high-energy aesthetic of the franchise while giving it a personal touch. This project reflects how even minor tweaks can create a bold, polished final result with the right eye for detail and balance.">
+            <img src="gta6.jpg" />
+          </li>
+          <li class="img-container" data-description="I created a bold Cyberpunk 2077 poster featuring multiple characters, set against a striking yellow background accented with rough black paint slashes. This design choice gives the poster a raw, rebellious energy that mirrors the chaotic spirit of Night City. Instead of using the typical neon aesthetic, I focused on high-contrast colors and layered composition to highlight each character while maintaining a gritty, dystopian atmosphere. This piece allowed me to explore unconventional textures and strong visual impact through minimal but deliberate design choices.">
+            <img src="cyb.png" />
+          </li>
+          <li class="img-container" data-description="I designed an epic Star Wars poster featuring iconic Skywalkers—Anakin and Luke—placed prominently at the center of the composition. The background is a deep space setting filled with dynamic elements like TIE Fighters and X-Wings engaged in flight, adding motion and scale to the scene. With a focus on contrast, composition, and balance, the poster merges legendary characters with classic sci-fi visuals to capture the timeless feel of the Star Wars universe. This project allowed me to blend character focus with cinematic world-building.">
+            <img src="Sky.png" />
+          </li>
+        </ul>
+      </div>
+    </section>
+    <div id="side-panel" style="display:none; position: fixed; top: 0; right: 0; width: 400px; height: 100vh; background: rgba(0,0,0,0.9); color: white; padding: 20px; box-shadow: -2px 0 5px rgba(0,0,0,0.5); overflow-y: auto; z-index: 1000;">
+      <button id="close-panel" style="background: transparent; border: none; color: white; font-size: 24px; cursor: pointer; float: right;">&times;</button>
+      <img id="side-panel-img" src="" alt="Zoomed Image" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 15px;" />
+      <p id="side-panel-desc"></p>
+    </div>
+  </article>
+  <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; margin-top: -400px;">
+    <h1 class="1234" style="margin: 0;">Liked my Designs?</h1>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      Hire me <span id="hireMeText" class="wavy" style="font-size: 1rem; color: white; visibility: hidden;">here</span>
+      <a href="https://www.upwork.com/freelancers/~01d5d37a1dad57877e?mp_source=share" target="_blank" class="contact-btn github-btn" style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 5px; text-decoration: none;">
+        <img src="upwork_logo_icon_170310.webp" alt="Upwork" style="height: 20px; width: auto;" />
+      </a>
+    </div>
+  </div>
+<script type="module" setup>
+  import { animate, stagger } from "https://cdn.jsdelivr.net/npm/motion@12.10.4/+esm";
+  import { splitText } from "https://cdn.jsdelivr.net/npm/motion-plus/+esm";
+  
+  document.fonts.ready.then(() => {
+    const container = document.getElementById('hireMeText');
+    if (!container) return;
+  
+    const { chars } = splitText(container);
+    container.style.visibility = "visible";
+  
+    const staggerDelay = 0.15;
+  
+    animate(
+      chars,
+      { y: [-10, 10] },
+      {
+        repeat: Infinity,
+        repeatType: "mirror",
+        ease: "easeInOut",
+        duration: 2.5,
+        delay: stagger(
+          staggerDelay,
+          { startDelay: -staggerDelay * chars.length }
+        ),
+      }
+    );
+  });
+</script>
+<style>
+  .wavy {
+    display: inline-block;
+    will-change: transform, opacity;
+  }
+</style>
+
+  <div class="progress"></div>
+
+  <section id="contact">
+    <h1>GET IN TOUCH</h1>
+    <div class="contact-container">
+      <div class="contact-info">
+          <div class="contact-item">
+          <img src="CALL.png" alt="Phone" class="contact-icon" />
+          <div class="contact-details">
+            <h3>Phone</h3>
+            <p><a href="tel:+919998665068" style="color: inherit; text-decoration: none;">+91 9998665068</a></p>
+          </div>
+        </div>
+          <div class="contact-item">
+            <img src="LOC.png" alt="Location" class="contact-icon" />
+            <div class="contact-details">
+              <h3>Location</h3>
+              <p><a href="https://www.google.com/maps/place/Bhubaneswar,+Odisha,+India" target="_blank" style="color: inherit; text-decoration: none;">Bhubaneswar, Odisha, India</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <img src="mail.png" alt="Email" class="contact-icon" />
+            <div class="contact-details">
+              <h3>Email</h3>
+<p><a href="mailto:routbiswajit.0408@gmail.com" style="color: inherit; text-decoration: none; word-break: break-all;">routbiswajit.0408@gmail.com</a></p>
+            </div>
+          </div>
+      </div>
+
+      <div class="social-links">
+        <h3>Connect With Me</h3>
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/in/biswajit-rout-26983420a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="social-icon">
+            <img src="in.png" />
+          </a>
+          <a href="https://www.instagram.com/biswa_nirmata?igsh=OG5mbzEyY3Zubml3" target="_blank" class="social-icon">
+            <img src="gh.png" />
+          </a>
+          <a href="https://twitter.com" target="_blank" class="social-icon">
+            <img src="twitter.jpg" />
+          </a>
+          <a href="https://www.instagram.com/biswa_nirmata/?igsh=OG5mbzEyY3Zubml3#" target="_blank" class="social-icon">
+            <img src="ig.png" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Biswajit. All rights reserved.</p>
+  </footer>
+
+  <script type="module">
+    import { animate, scroll } from "https://cdn.jsdelivr.net/npm/motion@12.10.4/+esm";
+
+    const galleryItems = document.querySelectorAll(".img-container");
+
+    // Animate gallery horizontally during vertical scroll
+    scroll(
+      animate(".img-group", {
+        transform: ["none", `translateX(-${(galleryItems.length - 1) * 100}vw)`],
+        duration: 15000
+      }),
+      { target: document.querySelector(".img-group-container") }
+    );
+
+    // Progress bar representing gallery scroll
+    scroll(
+      animate(".progress", { scaleX: [0, 1] }),
+      {
+        target: document.querySelector(".img-group-container"),
+      }
+    );
+  </script>
+
+  <script>
+    const sections = document.querySelectorAll("section");
+    const dots = document.querySelectorAll(".dot");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        if (
+          pageYOffset >= sectionTop - 100 &&
+          pageYOffset < sectionTop + sectionHeight - 100
+        ) {
+          current = section.getAttribute("id");
+        }
+      });
+      dots.forEach((dot) => {
+        dot.classList.remove("active");
+        if (dot.getAttribute("href") === "#" + current) {
+          dot.classList.add("active");
+        }
+      });
+    });
+
+    // Automatic carousel movement every 4 seconds
+    let currentIndex = 0;
+    const items = document.querySelectorAll(".carousel-item");
+    const totalItems = items.length;
+    const prevBtn = document.querySelector(".prev-btn");
+    const nextBtn = document.querySelector(".next-btn");
+
+    function moveToNextSlide() {
+      currentIndex = (currentIndex + 1) % totalItems;
+      updateCarouselPosition();
+    }
+
+    function moveToPrevSlide() {
+      currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+      updateCarouselPosition();
+    }
+
+    function updateCarouselPosition() {
+      const carousel = document.querySelector(".carousel");
+      const offset = -100 * currentIndex;
+      carousel.style.transform = `translateX(${offset}%)`;
+    }
+
+    // Add click event listeners to buttons
+    prevBtn.addEventListener("click", moveToPrevSlide);
+    nextBtn.addEventListener("click", moveToNextSlide);
+
+    // Automatic slideshow
+    let slideshowInterval = setInterval(moveToNextSlide, 4000);
+
+    // Pause slideshow when hovering over carousel
+    const carouselContainer = document.querySelector(".carousel-container");
+    carouselContainer.addEventListener("mouseenter", () => {
+      clearInterval(slideshowInterval);
+    });
+
+    carouselContainer.addEventListener("mouseleave", () => {
+      slideshowInterval = setInterval(moveToNextSlide, 4000);
+    });
+  </script>
+  <div id="flashlight"></div>
+  <script>
+    const flashlight = document.getElementById('flashlight');
+    document.addEventListener('mousemove', (e) => {
+      const x = e.clientX;
+      const y = e.clientY;
+      flashlight.style.left = x + 'px';
+      flashlight.style.top = y + 'px';
+    });
+
+    // Side panel functionality for gallery images
+    const sidePanel = document.getElementById('side-panel');
+    const sidePanelImg = document.getElementById('side-panel-img');
+    const sidePanelDesc = document.getElementById('side-panel-desc');
+    const closePanelBtn = document.getElementById('close-panel');
+
+    document.querySelectorAll('.img-container').forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        const desc = item.getAttribute('data-description') || '';
+        sidePanelImg.src = img.src;
+        sidePanelDesc.textContent = desc;
+        sidePanel.style.display = 'block';
+      });
+    });
+
+    closePanelBtn.addEventListener('click', () => {
+      sidePanel.style.display = 'none';
+      sidePanelImg.src = '';
+      sidePanelDesc.textContent = '';
+    });
+  </script>
+ </body>
+ </html>
